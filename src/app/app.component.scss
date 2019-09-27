@@ -1,0 +1,38 @@
+$pixel-width: 25px;
+$pixel-height: 25px;
+$width: 40;
+$height: 40;
+
+.monitor {
+  line-height: $pixel-height;
+  position: relative;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.screen {
+  display: inline-block;
+  width: $width * $pixel-width;
+  height: $height * $pixel-height;
+  background-color: black;x
+
+}
+
+.input-area {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 20px;
+
+  input {
+    width: 400px;
+    height: 40px;
+    font-size: 24px;
+  }
+}
+
+.pixel {
+  display: inline-block;
+  width: $pixel-width;
+  height: $pixel-height;
+  color: white;
+}

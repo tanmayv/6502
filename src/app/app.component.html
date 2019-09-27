@@ -1,0 +1,12 @@
+<div class="monitor">
+  <div class="screen">
+    <div *ngFor="let row of displayMatrix" class="row">
+      <div *ngFor="let pixel of row" class="pixel">
+        {{Number(pixel).toString(16).toUpperCase()}}
+      </div>
+    </div>
+  </div>
+  <div class="input-area">
+    <input type="text" [(ngModel)]="command" (keyup.enter)="submit()"/>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MemoryService } from './memory.service';
+import { CPUService } from './cpu.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,17 @@ export class AppComponent implements OnInit {
   private CODE_AREA = 800;                              // bytes
   private START_MEM = 0x320;                            // 800
   private END_MEM = this.START_MEM + this.SCREEN_AREA;  // 2400
+  private CODE_START = 0x00;
+  private CPU: CPUService;
+
   screenMemory: number[] = [];
   displayMatrix: any[];
   Number = Number;
   command = '';
-  constructor(private memory: MemoryService) {}
+  dump: string;
+  constructor(private memory: MemoryService) {
+    this.CPU = new CPUService(memory);
+  }
 
   ngOnInit(): void {
     this.memory.initialize(this.SCREEN_AREA + this.CODE_AREA, 0x00);
@@ -52,16 +59,20 @@ export class AppComponent implements OnInit {
   submit() {
     const input = this.command.split(' ');
 
+    let address = parseInt(input[0], 16);
     if (input.length === 2) {
-      const address = parseInt(input[0], 16);
       const value = input[1];
       this.memory.writeByte(address, value);
     } else if (input.length === 3) {
-      const address = parseInt(input[0], 16) << 8 | parseInt(input[1], 16);
+      address = address << 8 | parseInt(input[1], 16);
       const value = input[2];
       this.memory.writeByte(address, value);
+    } else if (input.length === 1) {
+      const data = this.dump.replace( /\n/g, ' ' ).split(' ');
+      for (const value of data) {
+        this.memory.writeByte(address++, value);
+      }
+      this.CPU.evaluate(0x00);
     }
-
-    this.command = '';
   }
 }

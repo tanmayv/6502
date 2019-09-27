@@ -7,6 +7,39 @@
     </div>
   </div>
   <div class="input-area">
-    <input type="text" [(ngModel)]="command" (keyup.enter)="submit()"/>
+    <div>
+      <input type="text" [(ngModel)]="command" (keyup.enter)="submit()"/>
+    </div>
+    <div>
+      <textarea [(ngModel)]="dump"></textarea>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <h1>Reference</h1>
+    <h4>OpCodes</h4>
+    <ol>
+      <li>BRK: 0x00</li>
+      <li>ADC: 0x10</li>
+      <li>SBC: 0x20</li>
+      <li>MOVA: 0x30</li>
+      <li>MOVX: 0x40</li>
+      <li>MOVY: 0x50</li>
+      <li>LOADA: 0x60</li>
+      <li>LOADX: 0x70</li>
+      <li>LOADY: 0x80</li>
+      <li>TAX: 0x90</li>
+      <li>TAY: 0xA0</li>
+    </ol>
+
+    <h4>Addressing Modes</h4>
+    <ol>
+      <li>implied: 0x00</li>
+      <li>immediate: 0x01</li>
+      <li>indirect: 0x02</li>
+      <li>absolute: 0x03</li>
+      <li>absoluteX: 0x04</li>
+      <li>absoluteY: 0x05</li>
+    </ol>
   </div>
 </div>

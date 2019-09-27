@@ -22,10 +22,21 @@ $height: 40;
   vertical-align: top;
   margin-left: 20px;
 
-  input {
+  input, textarea {
     width: 400px;
-    height: 40px;
+    //height: 40px;
     font-size: 24px;
+  }
+
+  textarea {
+    margin-top: 20px;
+    width: 404px;
+    resize: none;
+    height: 500px;
+  }
+
+  input {
+    height: 40px;
   }
 }
 

@@ -17,6 +17,7 @@ export class MemoryService {
   }
 
   public writeByte(address, value) {
+    value = (value & 0x00FF);
     console.log('write', Number(address).toString(16), Number(value).toString(16));
     this.memory[ address ] = value;
     this.changeSubject.next({ address, value });
